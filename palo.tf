@@ -9,7 +9,6 @@ resource "azurerm_resource_group" "rg_palo-prod-westus3-001" {
   location = "West US 3"
 }
 
-
 resource "azurerm_network_security_group" "palo_alto_nsg" {
   name                = "palo-alto-nsg-mgmt"
   location            = azurerm_resource_group.rg_palo-prod-westus3-001.location
@@ -156,6 +155,6 @@ resource "azurerm_virtual_machine" "palo_alto" {
     disable_password_authentication = false // Enable password authentication
   }
 
-  #depends_on = [azurerm_marketplace_agreement.palo_alto_agreement]
+  depends_on = [azurerm_marketplace_agreement.palo_alto_agreement]
   delete_os_disk_on_termination = true
 }
